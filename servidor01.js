@@ -17,6 +17,11 @@ web.get('/' , function(req , res){
 	res.sendfile('formulario.html');
 });
 
+// Nosta si ingresados colocando 127.0.0.1:6969/entrar nos mostrar un error por que solo se ingresa con el metodo POST
+web.post('/entrar' , function(req , res){
+	res.send('has ingresado con el metodo POST' );
+});
+
 web.get('/test' , function(req , res){
 	// Nota las Varaibles aparecen el requiere
 	// En navegador :  /test?auto=kia&color=azul');
