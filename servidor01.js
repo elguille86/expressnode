@@ -10,7 +10,11 @@ console.log ('Servidor Iniciado');
  
 // Invocamos el modulo express
 var express = require("express");
+//parcero Es un termino, selecciona un formato de datos y lo convierte a otro
+// en este caso los datos del formulario los convierte a json
+var parcero = require("body-parser")
 var web = express();// --> instanciamos al Servidor
+web.use(parcero.urlencoded() );// indicamos que express use los datos del body parser
 var servidor;
 
 // asiendo uso de una funcion anomima
@@ -25,7 +29,14 @@ web.get('/' , function(req , res){
 
 // Nosta si ingresados colocando 127.0.0.1:6969/entrar nos mostrar un error por que solo se ingresa con el metodo POST
 web.post('/entrar' , function(req , res){
-	console.log (req);
+	// con la linea console.log (req.body);, vemos por consola los datos enviados por formulario
+	//console.log (req.body);
+	if(req.body.usuario == basededatos.usuario && req.body.clave == basededatos.clave){
+		res.send('Bienvenido al area Secretta' );
+	}else{
+		res.send('Error, no tiene acceso' );
+	}
+
 	//res.send('has ingresado con el metodo POST' );
 });
 
